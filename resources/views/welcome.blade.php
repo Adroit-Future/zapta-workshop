@@ -23,6 +23,13 @@
     <body class="antialiased">
         {{-- <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0"> --}}
         <div >
+            Hello, @{{ name }}.
+            @@if()
+            @verbatim
+                <div class="container">
+                    Hello, {{ name }}.
+                </div>
+            @endverbatim
             <table class="table">
                 <thead>
                   <tr>
@@ -153,5 +160,8 @@
                 </div>
             </div>
         </div>
+        <script>
+            var name ="Usman"
+        </script>
     </body>
 </html>
