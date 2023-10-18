@@ -1,17 +1,21 @@
 <?php
 
+use App\Actions\Car1;
 use App\Models\Message;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Actions\RequestAction;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\Route;
 use App\Events\NewMessageNotification;
+use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Redirect;
+use App\Interfaces\MusicServiceInterface;
+use App\Webhooks\StripeWebhookController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Middleware\VerifyCsrfToken;
-use App\Webhooks\StripeWebhookController;
+use App\Http\Controllers\DependencyInjectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,13 +28,29 @@ use App\Webhooks\StripeWebhookController;
 |
 */
 
-Route::get('/', function () {
-    // app()->make('foo');
-    // resolve('foo');
-    // app('foo');
+Route::get("/play-music", function () {
+    dd(app()->make(MusicServiceInterface::class),
+    app()->make(MusicServiceInterface::class));
+    // dd($interfcae);
+});
 
+Route::get('car1', function (Car1 $car1) {
+    return $car1->start();
+  });
+
+
+Route::get('/', function (RequestAction $request) {
+    dd($request);
+    // $return = app()->make('foo');
+    // // $return = resolve(Request::class);
+    // // app('foo');
+    // dd($return);
     return view('welcome');
 });
+
+
+Route::get('instance',[DependencyInjectionController::class,'index']);
+
 
 Route::get('/dashboard', function () {
     $products=Product::where('user_id',auth()->user()->id)->orWHere('id',48)->get();
