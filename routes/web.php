@@ -138,3 +138,6 @@ Route::get('stripe-checkout',function(){
     // dd($response);
     return Redirect::to($response['url']);
 });
+
+
+Route::view('components','components');
