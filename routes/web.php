@@ -16,6 +16,7 @@ use App\Webhooks\StripeWebhookController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DependencyInjectionController;
+use App\Livewire\Counter;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,8 +40,10 @@ Route::get('car1', function (Car1 $car1) {
   });
 
 
+
+
 Route::get('/', function (RequestAction $request) {
-    dd($request);
+    // dd($request);
     // $return = app()->make('foo');
     // // $return = resolve(Request::class);
     // // app('foo');
